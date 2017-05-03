@@ -1,0 +1,13 @@
+<resources>
+    <!-- unser AppTheme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- ActionBar style -->
+        <item name="actionBarStyle">@style/AppActionBarTheme</item>
+    </style>
+
+    <!-- unser ActionBarTheme -->
+    <style name="AppActionBarTheme" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/APP_RED</item>
+        <item name="android:background">@color/APP_RED</item>
+    </style>
+</resources>

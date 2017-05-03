@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Point 2 Tick</string>
+
+    <!-- item_trip_list_image description -->
+    <string name="item_list_image_edit_desc">Bearbeiten</string>
+
+    <!-- menu strings -->
+    <string name="menu_application_service_enable">Start Service</string>
+    <string name="menu_application_service_disable">Stop Service</string>
+    <string name="menu_application_settings">Optionen</string>
+    <string name="menu_application_about">Über</string>
+    <string name="menu_application_add_trip">Hinzufügen</string>
+
+    <string name="menu_trip_finish">Fertig</string>
+
+    <!-- alarm aktivity -->
+    <string name="alarm_aktivity_destination_reached">Ziel erreicht!</string>
+
+    <!-- AlertDialog Exit stuff -->
+    <string name="alert_exit_title">Beenden</string>
+    <string name="alert_exit_content">Wollen Sie die Anwendung wirklich beeneden?</string>
+    <string name="alert_exit_ok">Beenden</string>
+    <string name="alert_exit_cancel">Zurück</string>
+    <!-- AlertDialog Permission error stuff -->
+    <string name="alert_permission_title">Berechtigungsfehler</string>
+    <string name="alert_permission_content">Die Anwendung kann nicht ausgeführt werden, da gewisse berechtigungen fehlen.</string>
+    <string name="alert_permission_ok">Einstellungen</string>
+    <string name="alert_permission_cancel">Beenden</string>
+    <!-- AlertDialog close trip view -->
+    <string name="alert_close_trip_title">Zurück</string>
+    <string name="alert_close_trip_content">Wollen Sie wirklick zurück? Es werden keine Änderungen übernommen!</string>
+    <string name="alert_close_trip_ok">OK</string>
+    <string name="alert_close_trip_cancel">Abbrechen</string>
+
+    <!-- tabs titles -->
+    <string name="tab_location_title">Wo</string>
+    <string name="tab_repeat_title">Wann</string>
+    <string name="tab_options_title">Wie</string>
+    
+    <!-- days -->
+    <string name="day_monday">Montag</string>
+    <string name="day_tuesday">Dienstag</string>
+    <string name="day_wednesday">Mitwoch</string>
+    <string name="day_thursday">Donnerstag</string>
+    <string name="day_friday">Freitag</string>
+    <string name="day_saturday">Samstag</string>
+    <string name="day_sunday">Sonntag</string>
+    <string name="day_daily">Täglich</string>
+</resources>

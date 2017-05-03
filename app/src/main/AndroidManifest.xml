@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="at.preproject.point2tick">
+
+    <!-- permissions -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Das google index ignorieren wir mal da ma keine website haben undso ... -->
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+
+        <!-- unsere main activity -->
+        <activity
+            android:name=".Application"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Unsere alarm activity -->
+        <!-- showOnLockScreen lass ma egal wegen dem api >= 17 :) -->
+        <activity
+            android:name=".activity.AlarmActivity"
+            android:screenOrientation="portrait"
+            android:showOnLockScreen="true" />
+
+        <!-- trip activity -->
+        <activity
+            android:name=".activity.TripActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- unser service -->
+        <service android:name=".service.BackgroundService" />
+        <!-- google api key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+    </application>
+
+</manifest>

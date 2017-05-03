@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/fragment_trip_repeat_root">
+
+    <CheckBox
+        android:text="@string/day_monday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_monday" />
+
+    <CheckBox
+        android:text="@string/day_tuesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_tuesday" />
+
+    <CheckBox
+        android:text="@string/day_wednesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_wednesday" />
+
+    <CheckBox
+        android:text="@string/day_thursday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_thursday" />
+
+    <CheckBox
+        android:text="@string/day_friday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_friday" />
+
+    <CheckBox
+        android:text="@string/day_saturday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_saturday" />
+
+    <CheckBox
+        android:text="@string/day_sunday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_sunday" />
+
+    <CheckBox
+        android:text="@string/day_daily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_trip_repeat_daily" />
+</LinearLayout>
