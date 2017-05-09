@@ -2,7 +2,9 @@ package at.preproject.point2tick.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,39 +21,24 @@ import at.preproject.point2tick.trip.BaseTrip;
 
 public class TripRepeatTripTabFragment extends TripTabFragment implements CompoundButton.OnCheckedChangeListener {
 
-    private View mView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_trip_repeat, container, false);
-        init(mView);
-        return mView;
+        final View view = inflater.inflate(R.layout.fragment_trip_repeat, container, false);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_monday), BaseTrip.FLAG_DAY_MONDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_tuesday), BaseTrip.FLAG_DAY_TUESDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_wednesday), BaseTrip.FLAG_DAY_WEDNESDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_thursday), BaseTrip.FLAG_DAY_THURSDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_friday), BaseTrip.FLAG_DAY_FRIDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_saturday), BaseTrip.FLAG_DAY_SATURDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_sunday), BaseTrip.FLAG_DAY_SUNDAY);
+        initCheckbox((CheckBox) view.findViewById(R.id.fragment_trip_repeat_daily), BaseTrip.FLAG_DAY_DAILY);
+        return view;
     }
 
-    private void init(View view) {
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_monday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_monday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_MONDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_tuesday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_tuesday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_TUESDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_wednesday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_wednesday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_WEDNESDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_thursday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_thursday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_THURSDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_friday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_friday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_FRIDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_saturday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_saturday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_SATURDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_sunday)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_sunday)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_SUNDAY));
-
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_daily)).setOnCheckedChangeListener(this);
-        ((CheckBox) view.findViewById(R.id.fragment_trip_repeat_daily)).setChecked(TripActivity.baseTrip.flags.isFlagSet(BaseTrip.FLAG_DAY_DAILY));
+    private void initCheckbox(CheckBox checkBox, int flag) {
+        checkBox.setChecked(getTrip() != null && getTrip().flags.isFlagSet(flag));
+        checkBox.setOnCheckedChangeListener(this);
     }
 
     public static TripRepeatTripTabFragment newInstance(String title) {
@@ -64,35 +51,37 @@ public class TripRepeatTripTabFragment extends TripTabFragment implements Compou
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        //FIXME !!!DRY!!!
-        //final int flag; switch(..)... ; setFlag... sollte besser sein aber nja... :)
+        int flag;
         switch (compoundButton.getId()) {
             case R.id.fragment_trip_repeat_monday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_MONDAY, b);
+                flag = BaseTrip.FLAG_DAY_MONDAY;
                 break;
             case R.id.fragment_trip_repeat_tuesday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_TUESDAY, b);
+                flag = BaseTrip.FLAG_DAY_TUESDAY;
                 break;
             case R.id.fragment_trip_repeat_wednesday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_WEDNESDAY, b);
+                flag = BaseTrip.FLAG_DAY_WEDNESDAY;
                 break;
             case R.id.fragment_trip_repeat_thursday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_THURSDAY, b);
+                flag = BaseTrip.FLAG_DAY_THURSDAY;
                 break;
             case R.id.fragment_trip_repeat_friday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_FRIDAY, b);
+                flag = BaseTrip.FLAG_DAY_FRIDAY;
                 break;
             case R.id.fragment_trip_repeat_saturday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_SATURDAY, b);
+                flag = BaseTrip.FLAG_DAY_SATURDAY;
                 break;
             case R.id.fragment_trip_repeat_sunday:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_SUNDAY, b);
+                flag = BaseTrip.FLAG_DAY_SUNDAY;
                 break;
             case R.id.fragment_trip_repeat_daily:
-                TripActivity.baseTrip.flags.setFlag(BaseTrip.FLAG_DAY_DAILY, b);
+                flag = BaseTrip.FLAG_DAY_DAILY;
                 break;
             default:
-                break;
+                return;
+        }
+        if(getTrip() != null) {
+            getTrip().flags.setFlag(flag, b);
         }
     }
 }

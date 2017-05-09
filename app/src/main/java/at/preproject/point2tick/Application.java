@@ -74,7 +74,7 @@ public class Application extends AppCompatActivity implements TripListAdapter.On
                     try {
                         BaseTrip trip = BaseTrip.class.cast(obj);
                         //TODO handle result
-
+                        Log.i("result", trip.toJson().toString());
                         //FIXME tmp
                         tripManager.addTrip(trip);
                     } catch (ClassCastException cce) {
@@ -97,8 +97,7 @@ public class Application extends AppCompatActivity implements TripListAdapter.On
     public void showTripActivity(@Nullable BaseTrip trip) {
         final Intent intent = new Intent(this, TripActivity.class);
         final Bundle bundle = new Bundle();
-        TripActivity.baseTrip = trip;
-        bundle.putBoolean(TripActivity.KEY_ARG_TRIP_NEW, (trip == null));
+        bundle.putSerializable(TripActivity.KEY_ARG_TRIP, trip);
         intent.putExtras(bundle);
         startActivityForResult(intent, RESULT_REQUEST_CODE);
     }

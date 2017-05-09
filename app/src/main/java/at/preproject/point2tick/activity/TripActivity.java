@@ -29,12 +29,11 @@ import at.preproject.point2tick.trip.BaseTrip;
  */
 
 public class TripActivity extends AppCompatActivity {
-    // key fürs bundle
-    public static final String KEY_ARG_TRIP_NEW = "newtrip";
-    // edit instance
-    //FIXME local ref from bundel is bessa
-    public static BaseTrip baseTrip = BaseTrip.newDefaultInstance();
-    // ui handler..
+    //key
+    public static final String KEY_ARG_TRIP = "trip";
+    //trip
+    private BaseTrip mBaseTrip;
+    //ui
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
 
@@ -44,9 +43,12 @@ public class TripActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trip);
         //actionbar init
         setupActionBar();
-        //check ob ma an neune trip machen
-        if(getIntent().getExtras().getBoolean(KEY_ARG_TRIP_NEW, true) || baseTrip == null) {
-            baseTrip = BaseTrip.newDefaultInstance();
+        // unser trip wenn do
+        final Object obj = getIntent().getExtras().getSerializable(KEY_ARG_TRIP);
+        if(obj != null && obj instanceof BaseTrip) {
+            mBaseTrip = (BaseTrip) obj;
+        } else {
+            mBaseTrip = BaseTrip.newDefaultInstance();
         }
         //tabs
         final ArrayList<TripTabFragment> fragments = new ArrayList<>();
@@ -62,6 +64,15 @@ public class TripActivity extends AppCompatActivity {
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_trip_tab);
         tabLayout.setupWithViewPager(mViewPager);
     }
+
+    /**
+     * get trip
+     * @return trip
+     */
+    public BaseTrip getTrip() {
+        return mBaseTrip;
+    }
+
     /**
      * request exit is ok
      */
@@ -95,7 +106,7 @@ public class TripActivity extends AppCompatActivity {
             //TODO ...
             final Intent intent = new Intent();
             final Bundle args = new Bundle();
-            args.putSerializable(Application.RESULT_KEY_TRIP, baseTrip);
+            args.putSerializable(Application.RESULT_KEY_TRIP, mBaseTrip);
             intent.putExtras(args);
             setResult(RESULT_OK, intent);
             finish();

@@ -61,7 +61,7 @@ public class TripListAdapter extends ArrayAdapter<BaseTrip> {
         return convertView;
     }
 
-    public class ViewHolder {
+    private class ViewHolder {
         public TextView title;
         public Switch state;
         public ImageButton edit;
